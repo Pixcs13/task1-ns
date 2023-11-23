@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh '''
                 kubectl apply -f nginx-config.yaml --namespace staging
-                sed -e 's,{{YOUR_NAME}},'${YOUR_NAME}',g;' -e 's,{{version}},'${BUILD_NUMBER}',g;' app-manifest.yaml | kubectl apply -f - --namespace staging
+                sed -e 's,{{YOUR_NAME}},'${YOUR_NAME}',g;' -e 's,{{version}},'${BUILD_NUMBER}',g;' task1-manifest.yaml | kubectl apply -f - --namespace staging
                 kubectl apply -f nginx-pod.yaml --namespace staging
                 sleep 60
                 kubectl get services --namespace staging
@@ -45,7 +45,7 @@ pipeline {
             steps {
                 sh '''
                 kubectl apply -f nginx-config.yaml --namespace prod
-                sed -e 's,{{YOUR_NAME}},'${YOUR_NAME}',g;' -e 's,{{version}},'${BUILD_NUMBER}',g;' app-manifest.yaml | kubectl apply -f - --namespace prod
+                sed -e 's,{{YOUR_NAME}},'${YOUR_NAME}',g;' -e 's,{{version}},'${BUILD_NUMBER}',g;' task1-manifest.yaml | kubectl apply -f - --namespace prod
                 kubectl apply -f nginx-pod.yaml --namespace prod
                 sleep 60
                 kubectl get services --namespace prod
